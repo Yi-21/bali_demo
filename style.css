@@ -1,0 +1,13 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.restaurant {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+button {
+    margin-top: 10px;
+}
