@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const restaurants = ["Restaurant A", "Restaurant B", "Restaurant C", "Restaurant D"];
+    const restaurants = ["Restaurant A", "Restaurant B", "Restaurant C", "Restaurant D", "Restaurant E", "Restaurant F", "Restaurant G"];
     let currentRestaurantIndex = 0;
     let categories = {
         "I liked it": [],
