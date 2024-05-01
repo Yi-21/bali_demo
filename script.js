@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const restaurants = ["Restaurant A", "Restaurant B", "Restaurant C", "Restaurant D"];
+    const restaurants = ["Restaurant A", "Restaurant B", "Restaurant C", "Restaurant D", "Restaurant E", "Restaurant F", "Restaurant G"];
     let currentRestaurantIndex = 0;
     let categories = {
         "I liked it": [],
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <button onclick="handleFinalResponse('It was fine')">It was fine</button>
                                     <button onclick="handleFinalResponse('I didn't like it')">I didn't like it</button>`;
         } else {
-            alert("Maybe next time!");
+            //alert("Maybe next time!");
             currentRestaurantIndex++;
             showRestaurant();
         }
@@ -47,14 +47,14 @@ document.addEventListener('DOMContentLoaded', function() {
                                                                        <button onclick="finishComparison('${restaurants[currentRestaurantIndex]}')">${restaurants[currentRestaurantIndex]}</button>
                                                                        <button onclick="finishComparison('${comparisonRestaurant}')">${comparisonRestaurant}</button>`;
         } else {
-            alert(`You said: ${response}`);
+            //alert(`You said: ${response}`);
             currentRestaurantIndex++;
             showRestaurant();
         }
     };
 
     window.finishComparison = function (favorite) {
-        alert(`You prefer: ${favorite}`);
+        //alert(`You prefer: ${favorite}`);
         currentRestaurantIndex++;
         showRestaurant();
     };
