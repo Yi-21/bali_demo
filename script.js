@@ -20,9 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function getRandomElements(arr, count) {
-        let shuffled = arr.sort(() => 0.5 - Math.random());
-        return shuffled.slice(0, count);
+    function getRandomElement(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
     }
 
     window.handleInitialResponse = function (visited) {
@@ -41,17 +40,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.handleFinalResponse = function (response) {
         categories[response].push(restaurants[currentRestaurantIndex]);
-        let comparableRestaurants = categories[response].filter(r => r !== restaurants[currentRestaurantIndex]);
-        if (comparableRestaurants.length > 0) {
-            let comparisons = getRandomElements(comparableRestaurants, Math.min(2, comparableRestaurants.length));
-            let comparisonOptions = comparisons.map(r => `<button onclick="finishComparison('${r}')">${r}</button>`).join('');
-            let comparisonQuestion = comparisons.length === 1 ?
-                `How does ${restaurants[currentRestaurantIndex]} compare to ${comparisons[0]}?` :
-                `Which one do you prefer?`;
+        if (categories[response].length > 1) { // Ensure there is at least one other restaurant for comparison
+            let comparisonRestaurant = getRandomElement(categories[response].filter(r => r !== restaurants[currentRestaurantIndex]));
             document.getElementById('restaurantContainer').innerHTML = `<h2>Comparison</h2>
-                                                                       <p>${comparisonQuestion}</p>
-                                                                       ${comparisonOptions}
-                                                                       <button onclick="finishComparison('${restaurants[currentRestaurantIndex]}')">${restaurants[currentRestaurantIndex]}</button>`;
+                                                                       <p>Do you prefer ${restaurants[currentRestaurantIndex]} or ${comparisonRestaurant}?</p>
+                                                                       <button onclick="finishComparison('${restaurants[currentRestaurantIndex]}')">${restaurants[currentRestaurantIndex]}</button>
+                                                                       <button onclick="finishComparison('${comparisonRestaurant}')">${comparisonRestaurant}</button>`;
         } else {
             alert(`You said: ${response}`);
             currentRestaurantIndex++;
